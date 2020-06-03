@@ -1,0 +1,153 @@
+openapi: 3.0.0
+info:
+  title: ACDH MWSA Service
+  description: ACDH Monolingual Word Sense Alignment Service
+  version: 1o-oas3
+servers:
+- url: https://virtserver.swaggerhub.com/ACDH/ACDH_MWSA_Service/1o
+paths:
+  /acdh-mwsa/features:
+    post:
+      summary: Extract features for given definition pair
+      operationId: acdh_mwsa_features_post
+      requestBody:
+        content:
+          applciation/json:
+            schema:
+              $ref: '#/components/schemas/DefinitionPair'
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Features'
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    x-openapi-router-controller: swagger_server.controllers.default_controller
+  /achda-mwsa/scores/:
+    post:
+      summary: Get word sense alignment of definition pairs
+      operationId: achda_mwsa_scores_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Scores'
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+components:
+  schemas:
+    Scores:
+      required:
+      - score
+      type: object
+      properties:
+        alignment:
+          type: string
+          description: alignment of definition pair. 'exact', 'related', 'broader',
+            'narrower', 'none'
+          example: narrower
+        probability:
+          type: number
+          description: probability of the pairs for the alignment
+          format: float
+          example: 0.8
+      example:
+        probability: 0.8
+        alignment: narrower
+    Features:
+      required:
+      - features
+      - headword
+      - pos
+      type: object
+      properties:
+        headword:
+          type: string
+          description: headword of the definition pair
+          example: olive
+        pos:
+          type: string
+          description: Part-of-speech of the headword
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feature'
+      example:
+        features:
+        - name: jaccard
+          value: 0.9
+        - name: jaccard
+          value: 0.9
+        headword: olive
+        pos: pos
+    Feature:
+      required:
+      - name
+      - value
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of the feature
+          example: jaccard
+        value:
+          type: number
+          description: value of the feature
+          format: float
+          example: 0.9
+      example:
+        name: jaccard
+        value: 0.9
+    DefinitionPair:
+      required:
+      - def1
+      - def2
+      - headword
+      - lang
+      type: object
+      properties:
+        headword:
+          type: string
+          description: headword of the definition pair
+          example: olive
+        pos:
+          type: string
+          description: Part-of-speech of the headword
+          example: noun
+        lang:
+          type: string
+          description: ISO 639-1 language code of the definition pair
+          example: en
+        def1:
+          type: string
+          description: first of the definition pair
+          example: a small green or black Mediterranean fruit, eaten or used to make
+            oil
+        def2:
+          type: string
+          description: second of the definition pair
+          example: a type of edible fruit which is used as a garnish etc and which
+            gives oil used for cooking
+    body:
+      type: object
+      properties:
+        classifier:
+          type: string
+          description: classifier to use for alignment. 'randomforest' or 'bert'
+          example: randomforst
+        pair:
+          $ref: '#/components/schemas/DefinitionPair'
+
