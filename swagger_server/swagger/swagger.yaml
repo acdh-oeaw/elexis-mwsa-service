@@ -35,7 +35,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/body'
+              $ref: '#/components/schemas/ScoreInput'
       responses:
         "201":
           description: Created
@@ -49,9 +49,21 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.default_controller
 components:
   schemas:
+    ScoreInput:
+      required:
+      - classifier
+      - pair
+      properties:
+        classifier:
+          type: string
+          description: classifier to use for alignment. 'randomforest' or 'bert'
+          example: randomforst
+        pair:
+          $ref: '#/components/schemas/DefinitionPair'
     Scores:
       required:
-      - score
+      - alignment
+      - probability
       type: object
       properties:
         alignment:
@@ -141,13 +153,4 @@ components:
           description: second of the definition pair
           example: a type of edible fruit which is used as a garnish etc and which
             gives oil used for cooking
-    body:
-      type: object
-      properties:
-        classifier:
-          type: string
-          description: classifier to use for alignment. 'randomforest' or 'bert'
-          example: randomforst
-        pair:
-          $ref: '#/components/schemas/DefinitionPair'
 

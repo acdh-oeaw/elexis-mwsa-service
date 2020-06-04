@@ -1,11 +1,12 @@
 import connexion
 import six
 
-from swagger_server.models.body import Body  # noqa: E501
 from swagger_server.models.definition_pair import DefinitionPair  # noqa: E501
 from swagger_server.models.features import Features  # noqa: E501
+from swagger_server.models.score_input import ScoreInput
 from swagger_server.models.scores import Scores  # noqa: E501
 from swagger_server import util
+from swagger_server.services.service import AlignmentScoringService
 
 
 def acdh_mwsa_features_post(body=None):  # noqa: E501
@@ -33,6 +34,10 @@ def achda_mwsa_scores_post(body=None):  # noqa: E501
 
     :rtype: List[Scores]
     """
+    results = []
     if connexion.request.is_json:
-        body = Body.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        score_input = ScoreInput.from_dict(body)  # noqa: E501
+        alignment_scoring_service = AlignmentScoringService()
+        results.extend(alignment_scoring_service.score(score_input))
+
+    return results
