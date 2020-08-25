@@ -2,6 +2,7 @@
 
 from __future__ import absolute_import
 
+import pytest
 from flask import json
 from six import BytesIO
 
@@ -15,7 +16,7 @@ from swagger_server.test import BaseTestCase
 
 class TestDefaultController(BaseTestCase):
     """DefaultController integration test stubs"""
-
+    @pytest.mark.skip(reason="not available yet")
     def test_acdh_mwsa_features_post(self):
         """Test case for acdh_mwsa_features_post
 

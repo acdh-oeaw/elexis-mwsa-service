@@ -47,3 +47,5 @@ docker build -t swagger_server .
 # starting up a container
 docker run -p 8080:8080 swagger_server
 ```
+
+#pip install -e git+ssh://gitlab+deploy-token-218175:5yjZ4VbaUkDExr5fag-X@gitlab.com/acdh-oeaw/elexis/mwsa_model.git#egg=mwsa_model
