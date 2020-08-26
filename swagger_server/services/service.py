@@ -10,17 +10,15 @@ class FeatureExtractionService:
 
 
 class AlignmentScoringService:
+    def __init__(self, english_model):
+        self.english_model = english_model
+
     def score(self, score_input):
         df = pd.DataFrame(
             data={'word': [score_input.pair.headword], 'pos': [score_input.pair.pos], 'def1': [score_input.pair.def1],
                   'def2': [score_input.pair.def2]})
-        file = 'models/en.pkl'
-        with open(file, 'rb') as model_file:
-            model = pickle.load(model_file)
-            predicted = model.predict_proba(df)
-            zipped = zip(model.classes_, predicted[0])
 
-        return self._highest_score(zipped)
+        return self._highest_score(self.english_model.predict(df))
 
     def _highest_score(self, prob):
         best = None
@@ -29,3 +27,16 @@ class AlignmentScoringService:
                 best = label_prob
 
         return Scores(alignment=best[0], probability=best[1])
+
+
+class EnglishMwsaModelService:
+
+    def __init__(self):
+        file = 'models/en.pkl'
+        with open(file, 'rb') as model_file:
+            self.model = pickle.load(model_file)
+
+    def predict(self, input):
+        predicted = self.model.predict_proba(input)
+
+        return zip(self.model.classes_, predicted[0])
