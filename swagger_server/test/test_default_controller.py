@@ -31,7 +31,6 @@ class TestDefaultController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    @pytest.mark.skip(reason="not available yet")
     def test_achda_mwsa_scores_post(self):
         """Test case for achda_mwsa_scores_post
 

@@ -24,7 +24,7 @@ def acdh_mwsa_features_post(body=None):  # noqa: E501
     return 'do some magic!'
 
 
-def achda_mwsa_scores_post(body=None):  # noqa: E501
+def achda_mwsa_scores_post(alignment_scoring_service: AlignmentScoringService, body=None):  # noqa: E501
     """Get word sense alignment of definition pairs
 
      # noqa: E501
@@ -37,7 +37,6 @@ def achda_mwsa_scores_post(body=None):  # noqa: E501
     results = []
     if connexion.request.is_json:
         score_input = ScoreInput.from_dict(body)  # noqa: E501
-        alignment_scoring_service = AlignmentScoringService()
         results.extend(alignment_scoring_service.score(score_input))
 
     return results
