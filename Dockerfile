@@ -1,16 +1,19 @@
 # syntax = docker/dockerfile:experimental
 FROM ubuntu:20.04
 
-
+RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && echo $GOOGLE_SERVICE_ACCOUNT_FILE
 RUN apt-get update
-RUN apt install -y python3-pip
-RUN apt install -y git
-RUN mkdir -p /usr/src/app
 RUN apt install -y curl
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
 RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && echo $GOOGLE_SERVICE_ACCOUNT_FILE > /tmp/key.json
 RUN gcloud auth activate-service-account --key-file /tmp/key.json
+RUN gsutil cp gs://elexis_mwsa_models/en.pkl /usr/src/app/models/en.pkl
+
+RUN apt install -y python3-pip
+RUN apt install -y git
+RUN mkdir -p /usr/src/app
+
 
 WORKDIR /usr/src/app
 
