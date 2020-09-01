@@ -1,6 +1,7 @@
 # syntax = docker/dockerfile:experimental
 FROM ubuntu:20.04
 
+RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && echo $GOOGLE_PROJECT_ID
 RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && echo $GOOGLE_SERVICE_ACCOUNT_FILE
 RUN apt-get update
 RUN apt install -y curl
