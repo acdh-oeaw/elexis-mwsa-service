@@ -25,6 +25,7 @@ class AlignmentScoringService:
 
     def _highest_score(self, prob):
         best = None
+
         for label_prob in prob:
             if not best or label_prob[1] > best[1]:
                 best = label_prob
