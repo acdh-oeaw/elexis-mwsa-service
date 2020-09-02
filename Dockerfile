@@ -1,13 +1,12 @@
 # syntax = docker/dockerfile:experimental
 FROM ubuntu:20.04
 
+RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && ls /builds/acdh-oeaw
+RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && ls /builds/acdh-oeaw/elexis
 RUN apt-get update
 RUN apt install -y curl
 RUN apt-get update && apt-get install -y gnupg2
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
-RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && ls /builds/acdh-oeaw/elexis/mwsa-service-generated.tmp
-RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && ls /builds/acdh-oeaw
-RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && ls /builds/acdh-oeaw/elexis
 RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && gcloud auth activate-service-account --key-file=${GOOGLE_SERVICE_ACCOUNT_FILE}
 RUN gsutil cp gs://elexis_mwsa_models/en.pkl /usr/src/app/models/en.pkl
 
