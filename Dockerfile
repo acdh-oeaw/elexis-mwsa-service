@@ -1,6 +1,8 @@
 # syntax = docker/dockerfile:experimental
 FROM ubuntu:20.04
 
+RUN ls /
+RUN ls /builds
 RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && ls /builds
 RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && ls /builds/acdh-oeaw
 RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && ls /builds/acdh-oeaw/elexis
