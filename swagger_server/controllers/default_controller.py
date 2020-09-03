@@ -40,3 +40,13 @@ def achda_mwsa_scores_post(alignment_scoring_service: AlignmentScoringService, b
         results.extend(alignment_scoring_service.score(score_input))
 
     return results
+
+def root_get():  # noqa: E501
+    """readiness check
+
+     # noqa: E501
+
+
+    :rtype: None
+    """
+    return 'do some magic!'

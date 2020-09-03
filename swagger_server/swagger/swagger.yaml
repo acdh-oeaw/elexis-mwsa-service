@@ -6,6 +6,14 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/ACDH/ACDH_MWSA_Service/1o
 paths:
+  /:
+    get:
+      summary: readiness check
+      operationId: root_get
+      responses:
+        "200":
+          description: ready
+      x-openapi-router-controller: swagger_server.controllers.default_controller
   /acdh-mwsa/features:
     post:
       summary: Extract features for given definition pair

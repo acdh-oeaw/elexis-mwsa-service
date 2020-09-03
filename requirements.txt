@@ -64,6 +64,6 @@ stanfordnlp~=0.2.0
 virtualenv~=20.0.21
 appdirs~=1.4.4
 distlib~=0.3.0
+spacy~=2.3.2
 -e git+https://mwsa-model-token:wgzF_5qTgcqQB7Uy2BUQ@gitlab.com/acdh-oeaw/elexis/mwsa_model.git#egg=mwsa_model
 Flask-Injector~=0.10.0
-spacy~=2.3.2
