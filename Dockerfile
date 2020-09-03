@@ -16,7 +16,7 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt /usr/src/app/
 
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir --default-timeout=100 -r requirements.txt
 RUN python3 -m nltk.downloader wordnet
 
 COPY . /usr/src/app
