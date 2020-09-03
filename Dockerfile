@@ -1,6 +1,8 @@
 # syntax = docker/dockerfile:experimental
 FROM ubuntu:20.04
 
+RUN echo $GOOGLE_SERVICE_ACCOUNT_FILE
+RUN cat $GOOGLE_SERVICE_ACCOUNT_FILE
 RUN ls /
 RUN ls /builds
 RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && ls /builds
