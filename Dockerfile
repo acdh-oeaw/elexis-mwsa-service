@@ -1,8 +1,8 @@
-FROM ubuntu:20.04
+FROM python:3.8-buster
 
 RUN apt-get update
-RUN apt install -y python3-pip
 RUN apt install -y git
+
 RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
