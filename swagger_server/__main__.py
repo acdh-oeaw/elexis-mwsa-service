@@ -22,7 +22,7 @@ def main():
     app.app.json_encoder = encoder.JSONEncoder
     app.add_api('swagger.yaml', arguments={'title': 'ACDH MWSA Service'}, pythonic_params=True)
     FlaskInjector(app=app.app, modules=[configure])
-    app.run(port=5000)
+    app.run(port=8080)
 
 
 if __name__ == '__main__':
