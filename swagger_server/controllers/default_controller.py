@@ -41,6 +41,7 @@ def achda_mwsa_scores_post(alignment_scoring_service: AlignmentScoringService, b
 
     return results
 
+
 def acdh_mwsa_get():  # noqa: E501
     """readiness check
 

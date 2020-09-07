@@ -2,6 +2,9 @@
 
 import connexion
 import logging
+
+import flask
+
 from swagger_server import encoder
 from injector import Binder
 from flask_injector import FlaskInjector
@@ -11,14 +14,20 @@ logging.basicConfig()
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-def configure(binder:Binder):
+app = connexion.App(__name__, specification_dir='./swagger/')
+
+@app.app.before_request
+def before_request_func():
+    print(flask.current_app.url_map)
+
+def configure(binder: Binder):
     binder.bind(
         AlignmentScoringService,
         AlignmentScoringService()
     )
 
+
 def main():
-    app = connexion.App(__name__, specification_dir='./swagger/')
     app.app.json_encoder = encoder.JSONEncoder
     app.add_api('swagger.yaml', arguments={'title': 'ACDH MWSA Service'}, pythonic_params=True)
     FlaskInjector(app=app.app, modules=[configure])
