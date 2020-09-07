@@ -14,7 +14,7 @@ RUN python3 -m nltk.downloader wordnet
 
 COPY . /usr/src/app
 
-EXPOSE 8080
+EXPOSE 5000
 
 ENTRYPOINT ["python3"]
 
