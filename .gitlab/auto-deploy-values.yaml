@@ -1,12 +1,12 @@
 livenessProbe:
-  path: "/acdh-mwsa"
+  path: "/ACDH/ACDH_MWSA_Service/1o/acdh-mwsa"
   port: 5000
   initialDelaySeconds: 60
   timeoutSeconds: 15
   scheme: "HTTP"
   probeType: "httpGet"
 readinessProbe:
-  path: "/acdh-mwsa"
+  path: "/ACDH/ACDH_MWSA_Service/1o/acdh-mwsa"
   port: 5000
   initialDelaySeconds: 60
   timeoutSeconds: 3
