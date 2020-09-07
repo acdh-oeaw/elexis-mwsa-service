@@ -46,6 +46,17 @@ class TestDefaultController(BaseTestCase):
                        'Response body is : ' + response.data.decode('utf-8'))
         self.assertIn('alignment', response.data.decode('utf-8'))
 
+    def test_acdh_mwsa_get(self):
+        """Test case for acdh_mwsa_get
+
+        readiness check
+        """
+        response = self.client.open(
+            '/ACDH/ACDH_MWSA_Service/1o/acdh-mwsa',
+            method='GET')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
 
 if __name__ == '__main__':
     import unittest

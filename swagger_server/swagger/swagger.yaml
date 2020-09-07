@@ -6,10 +6,10 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/ACDH/ACDH_MWSA_Service/1o
 paths:
-  /:
+  /acdh-mwsa:
     get:
       summary: readiness check
-      operationId: root_get
+      operationId: acdh_mwsa_get
       responses:
         "200":
           description: ready

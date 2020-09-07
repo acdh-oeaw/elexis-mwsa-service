@@ -14,7 +14,7 @@ def acdh_mwsa_features_post(body=None):  # noqa: E501
 
      # noqa: E501
 
-    :param body: 
+    :param body:
     :type body: dict | bytes
 
     :rtype: List[Features]
@@ -29,7 +29,7 @@ def achda_mwsa_scores_post(alignment_scoring_service: AlignmentScoringService, b
 
      # noqa: E501
 
-    :param body: 
+    :param body:
     :type body: dict | bytes
 
     :rtype: List[Scores]
@@ -41,7 +41,7 @@ def achda_mwsa_scores_post(alignment_scoring_service: AlignmentScoringService, b
 
     return results
 
-def root_get():  # noqa: E501
+def acdh_mwsa_get():  # noqa: E501
     """readiness check
 
      # noqa: E501
