@@ -4,13 +4,9 @@ from __future__ import absolute_import
 
 import pytest
 from flask import json
-from six import BytesIO
 
 from swagger_server.models.definition_pair import DefinitionPair  # noqa: E501
-from swagger_server.models.features import Features  # noqa: E501
 from swagger_server.models.score_input import ScoreInput
-from swagger_server.models.scores import Scores  # noqa: E501
-from swagger_server.services.service import FeatureExtractionService
 from swagger_server.test import BaseTestCase
 
 
