@@ -1,19 +1,23 @@
-import pickle
-import pandas as pd
 import logging
-from swagger_server.models import ScoreInput, Scores
+import pickle
+
+import pandas as pd
+
+from swagger_server.models import Scores
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 
 class FeatureExtractionService:
     def extract(self, definition_pair):
         return []
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
 
 class AlignmentScoringService:
-    def __init__(self, english_model=None):
+    def __init__(self, lang_model=None):
         logger.info('loading english model')
-        self.english_model = EnglishMwsaModelService() if not english_model else english_model
+        self.model = ModelService() if not lang_model else lang_model
         logger.info('english model loaded')
 
     def score(self, score_input):
@@ -21,7 +25,7 @@ class AlignmentScoringService:
             data={'word': [score_input.pair.headword], 'pos': [score_input.pair.pos], 'def1': [score_input.pair.def1],
                   'def2': [score_input.pair.def2]})
 
-        return [self._highest_score(self.english_model.predict(df))]
+        return [self._highest_score(self.model.predict(score_input.pair.lang, df))]
 
     def _highest_score(self, prob):
         best = None
@@ -33,16 +37,23 @@ class AlignmentScoringService:
         return Scores(alignment=best[0], probability=best[1])
 
 
-class EnglishMwsaModelService:
+class ModelService:
 
     def __init__(self):
-        file = 'models/en.pkl'
-        with open(file, 'rb') as model_file:
-            self.model = pickle.load(model_file)
+        self.model_map = {}
 
-    def predict(self, input):
+        en_file_path = 'models/en.pkl'
+        de_file_path = 'models/de.pkl'
+
+        with open(en_file_path, 'rb') as en_file:
+            self.model_map['en'] = pickle.load(en_file)
+
+        with open(de_file_path, 'rb') as de_file:
+            self.model_map['de'] = pickle.load(de_file)
+
+    def predict(self, lang, input):
         logger.info('determining mwsa score')
-        predicted = self.model.predict_proba(input)
+        predicted = self.model_map[lang].predict_proba(input)
         logger.info('mwsa score calculated')
 
-        return zip(self.model.classes_, predicted[0])
+        return zip(self.model_map[lang].classes_, predicted[0])

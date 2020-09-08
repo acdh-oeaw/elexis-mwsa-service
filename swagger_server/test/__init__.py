@@ -1,7 +1,6 @@
 import logging
 
 import connexion
-from flask import url_for
 from flask_testing import TestCase
 from injector import Binder
 from flask_injector import FlaskInjector
@@ -9,11 +8,13 @@ from flask_injector import FlaskInjector
 from swagger_server.encoder import JSONEncoder
 from swagger_server.services.service import AlignmentScoringService
 
-def configure(binder:Binder):
+
+def configure(binder: Binder):
     binder.bind(
         AlignmentScoringService,
         AlignmentScoringService()
     )
+
 
 class BaseTestCase(TestCase):
 
