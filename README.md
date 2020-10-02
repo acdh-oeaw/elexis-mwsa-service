@@ -52,7 +52,7 @@ docker run -p 8080:8080 swagger_server
 
 ## Example Query
 ```
-curl --location --request POST 'http://acdh-oeaw-elexis-mwsa-service-generated.10.3.6.55.xip.io/ACDH/ACDH_MWSA_Service/1o/achda-mwsa/scores/' \
+curl --location --request POST 'https://mwsa-service.acdh-dev.oeaw.ac.at/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "classifier": "randomforst",
