@@ -1,3 +1,4 @@
 flask_testing==0.8.0
 randomize>=0.13
 Flask-Injector~=0.10.0
+tensorflow~=2.4.1

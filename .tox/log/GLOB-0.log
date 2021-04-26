@@ -1,0 +1,145 @@
+action: GLOB, msg: packaging
+cwd: /Users/seungbinyim/Development/repos/elexis/mwsa-service-swagger
+cmd: /Users/seungbinyim/Development/repos/elexis/mwsa-service-swagger/venv/bin/python setup.py sdist --formats=zip --dist-dir .tox/dist
+running sdist
+running egg_info
+writing swagger_server.egg-info/PKG-INFO
+writing dependency_links to swagger_server.egg-info/dependency_links.txt
+writing entry points to swagger_server.egg-info/entry_points.txt
+writing requirements to swagger_server.egg-info/requires.txt
+writing top-level names to swagger_server.egg-info/top_level.txt
+reading manifest file 'swagger_server.egg-info/SOURCES.txt'
+writing manifest file 'swagger_server.egg-info/SOURCES.txt'
+running check
+warning: check: missing required meta-data: url
+
+warning: check: missing meta-data: either (author and author_email) or (maintainer and maintainer_email) should be supplied
+
+creating swagger_server-1.0.0
+creating swagger_server-1.0.0/swagger_server
+creating swagger_server-1.0.0/swagger_server.egg-info
+creating swagger_server-1.0.0/swagger_server/controllers
+creating swagger_server-1.0.0/swagger_server/models
+creating swagger_server-1.0.0/swagger_server/services
+creating swagger_server-1.0.0/swagger_server/test
+creating swagger_server-1.0.0/venv
+creating swagger_server-1.0.0/venv/src
+creating swagger_server-1.0.0/venv/src/mwsa-model
+creating swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model
+creating swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/data
+creating swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/output
+creating swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service
+creating swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/transformers
+copying files to swagger_server-1.0.0...
+copying README.md -> swagger_server-1.0.0
+copying setup.py -> swagger_server-1.0.0
+copying swagger_server/__init__.py -> swagger_server-1.0.0/swagger_server
+copying swagger_server/__main__.py -> swagger_server-1.0.0/swagger_server
+copying swagger_server/encoder.py -> swagger_server-1.0.0/swagger_server
+copying swagger_server/util.py -> swagger_server-1.0.0/swagger_server
+copying swagger_server.egg-info/PKG-INFO -> swagger_server-1.0.0/swagger_server.egg-info
+copying swagger_server.egg-info/SOURCES.txt -> swagger_server-1.0.0/swagger_server.egg-info
+copying swagger_server.egg-info/dependency_links.txt -> swagger_server-1.0.0/swagger_server.egg-info
+copying swagger_server.egg-info/entry_points.txt -> swagger_server-1.0.0/swagger_server.egg-info
+copying swagger_server.egg-info/requires.txt -> swagger_server-1.0.0/swagger_server.egg-info
+copying swagger_server.egg-info/top_level.txt -> swagger_server-1.0.0/swagger_server.egg-info
+copying swagger_server/controllers/__init__.py -> swagger_server-1.0.0/swagger_server/controllers
+copying swagger_server/controllers/authorization_controller.py -> swagger_server-1.0.0/swagger_server/controllers
+copying swagger_server/controllers/default_controller.py -> swagger_server-1.0.0/swagger_server/controllers
+copying swagger_server/models/__init__.py -> swagger_server-1.0.0/swagger_server/models
+copying swagger_server/models/base_model_.py -> swagger_server-1.0.0/swagger_server/models
+copying swagger_server/models/definition_pair.py -> swagger_server-1.0.0/swagger_server/models
+copying swagger_server/models/feature.py -> swagger_server-1.0.0/swagger_server/models
+copying swagger_server/models/features.py -> swagger_server-1.0.0/swagger_server/models
+copying swagger_server/models/score_input.py -> swagger_server-1.0.0/swagger_server/models
+copying swagger_server/models/scores.py -> swagger_server-1.0.0/swagger_server/models
+copying swagger_server/services/__init__.py -> swagger_server-1.0.0/swagger_server/services
+copying swagger_server/services/service.py -> swagger_server-1.0.0/swagger_server/services
+copying swagger_server/test/__init__.py -> swagger_server-1.0.0/swagger_server/test
+copying swagger_server/test/test_default_controller.py -> swagger_server-1.0.0/swagger_server/test
+copying swagger_server/test/test_service.py -> swagger_server-1.0.0/swagger_server/test
+copying venv/__init__.py -> swagger_server-1.0.0/venv
+copying venv/src/__init__.py -> swagger_server-1.0.0/venv/src
+copying venv/src/mwsa-model/__init__.py -> swagger_server-1.0.0/venv/src/mwsa-model
+copying venv/src/mwsa-model/model_test.py -> swagger_server-1.0.0/venv/src/mwsa-model
+copying venv/src/mwsa-model/nltk_install.py -> swagger_server-1.0.0/venv/src/mwsa-model
+copying venv/src/mwsa-model/setup.py -> swagger_server-1.0.0/venv/src/mwsa-model
+copying venv/src/mwsa-model/mwsa_model/__init__.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model
+copying venv/src/mwsa-model/mwsa_model/evaluate.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model
+copying venv/src/mwsa-model/mwsa_model/features.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model
+copying venv/src/mwsa-model/mwsa_model/load_data.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model
+copying venv/src/mwsa-model/mwsa_model/preprocess.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model
+copying venv/src/mwsa-model/mwsa_model/data/__init__.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/data
+copying venv/src/mwsa-model/mwsa_model/output/__init__.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/output
+copying venv/src/mwsa-model/mwsa_model/service/__init__.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service
+copying venv/src/mwsa-model/mwsa_model/service/data_loader.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service
+copying venv/src/mwsa-model/mwsa_model/service/model_trainer.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service
+copying venv/src/mwsa-model/mwsa_model/service/util.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service
+copying venv/src/mwsa-model/mwsa_model/transformers/__init__.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/transformers
+copying venv/src/mwsa-model/mwsa_model/transformers/pipeline.py -> swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/transformers
+Writing swagger_server-1.0.0/setup.cfg
+creating '.tox/dist/swagger_server-1.0.0.zip' and adding 'swagger_server-1.0.0' to it
+adding 'swagger_server-1.0.0'
+adding 'swagger_server-1.0.0/swagger_server'
+adding 'swagger_server-1.0.0/swagger_server.egg-info'
+adding 'swagger_server-1.0.0/venv'
+adding 'swagger_server-1.0.0/PKG-INFO'
+adding 'swagger_server-1.0.0/README.md'
+adding 'swagger_server-1.0.0/setup.py'
+adding 'swagger_server-1.0.0/setup.cfg'
+adding 'swagger_server-1.0.0/swagger_server/test'
+adding 'swagger_server-1.0.0/swagger_server/models'
+adding 'swagger_server-1.0.0/swagger_server/controllers'
+adding 'swagger_server-1.0.0/swagger_server/services'
+adding 'swagger_server-1.0.0/swagger_server/util.py'
+adding 'swagger_server-1.0.0/swagger_server/__init__.py'
+adding 'swagger_server-1.0.0/swagger_server/encoder.py'
+adding 'swagger_server-1.0.0/swagger_server/__main__.py'
+adding 'swagger_server-1.0.0/swagger_server/test/test_service.py'
+adding 'swagger_server-1.0.0/swagger_server/test/__init__.py'
+adding 'swagger_server-1.0.0/swagger_server/test/test_default_controller.py'
+adding 'swagger_server-1.0.0/swagger_server/models/__init__.py'
+adding 'swagger_server-1.0.0/swagger_server/models/features.py'
+adding 'swagger_server-1.0.0/swagger_server/models/feature.py'
+adding 'swagger_server-1.0.0/swagger_server/models/base_model_.py'
+adding 'swagger_server-1.0.0/swagger_server/models/definition_pair.py'
+adding 'swagger_server-1.0.0/swagger_server/models/score_input.py'
+adding 'swagger_server-1.0.0/swagger_server/models/scores.py'
+adding 'swagger_server-1.0.0/swagger_server/controllers/default_controller.py'
+adding 'swagger_server-1.0.0/swagger_server/controllers/__init__.py'
+adding 'swagger_server-1.0.0/swagger_server/controllers/authorization_controller.py'
+adding 'swagger_server-1.0.0/swagger_server/services/service.py'
+adding 'swagger_server-1.0.0/swagger_server/services/__init__.py'
+adding 'swagger_server-1.0.0/swagger_server.egg-info/PKG-INFO'
+adding 'swagger_server-1.0.0/swagger_server.egg-info/SOURCES.txt'
+adding 'swagger_server-1.0.0/swagger_server.egg-info/entry_points.txt'
+adding 'swagger_server-1.0.0/swagger_server.egg-info/requires.txt'
+adding 'swagger_server-1.0.0/swagger_server.egg-info/top_level.txt'
+adding 'swagger_server-1.0.0/swagger_server.egg-info/dependency_links.txt'
+adding 'swagger_server-1.0.0/venv/src'
+adding 'swagger_server-1.0.0/venv/__init__.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model'
+adding 'swagger_server-1.0.0/venv/src/__init__.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/model_test.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/__init__.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/nltk_install.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/setup.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/output'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/transformers'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/data'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/preprocess.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/__init__.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/features.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/evaluate.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/load_data.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/output/__init__.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/transformers/__init__.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/transformers/pipeline.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service/util.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service/data_loader.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service/model_trainer.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/service/__init__.py'
+adding 'swagger_server-1.0.0/venv/src/mwsa-model/mwsa_model/data/__init__.py'
+removing 'swagger_server-1.0.0' (and everything under it)

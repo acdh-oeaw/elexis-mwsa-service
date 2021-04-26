@@ -1,1 +1,13 @@
 /venv/
+.idea
+build
+dist
+**/.DS_Store
+__pycache__/
+*$py.class
+eggs/
+.eggs/
+**/*.zip
+.local
+models/mwsa_bert/
+models/mwsa_en/

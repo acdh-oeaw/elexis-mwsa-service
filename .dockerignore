@@ -1,2 +1,10 @@
 venv/**/*
 venv
+build
+dist
+.idea
+.tox
+/**/.DS_Store
+.git
+.gitignore
+.gitlab

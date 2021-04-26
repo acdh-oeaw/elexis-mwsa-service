@@ -23,6 +23,17 @@ def test_scoring(pair):
     assert result is not None
     assert len(result) > 0
 
+@pytest.mark.parametrize("pair", testdata)
+def test_scoring_with_bert(pair):
+    transformer_service = Mock()
+    transformer_service.predict.return_value = zip(['broader', 'narrower', 'exact', 'none', 'related'],
+                                             [0.0, 0.0, 1.0, 0.0, 0.0])
+    score_input = ScoreInput('randomforest', pair)
+    alignment_service = AlignmentScoringService(transformer_model=transformer_service)
+    result = alignment_service.score(score_input)
+    print(result)
+    assert result is not None
+    assert len(result) > 0
 
 english_data = pd.DataFrame(
     data={'word': ['Test Word'], 'pos': ['noun'], 'def1': ['English Definition 1'],

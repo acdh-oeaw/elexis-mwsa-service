@@ -2,7 +2,7 @@ import logging
 import pickle
 import tensorflow as tf
 import pandas as pd
-from transformers import TFDistilBertForSequenceClassification, DistilBertTokenizerFast
+from transformers import TFBertForSequenceClassification, BertTokenizerFast
 
 from swagger_server.models import Scores
 
@@ -17,12 +17,12 @@ class FeatureExtractionService:
 
 class TransformerService(object):
     def __init__(self):
-        self.en_model = TFDistilBertForSequenceClassification.from_pretrained("models/mwsa_en")
-        self.tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')
-
+        self.en_model = TFBertForSequenceClassification.from_pretrained("models/mwsa_bert")
+        self.tokenizer = BertTokenizerFast.from_pretrained("models/mwsa_bert")
+        #input_encodings = self.tokenizer(["only me"],["only me"], max_length=128, truncation=True, padding='max_length', return_tensors="tf")
 
     def predict(self, lang, input):
-        test_encodings = self.tokenizer(score_input.pair.def1, score_input.pair.def2, truncation=True, padding=True)
+        test_encodings = self.tokenizer(input.pair.def1, input.pair.def2, truncation=True, padding='max_length', max_length=128, return_tensors="tf")
         tf.data.Dataset.from_tensor_slices((
             dict(test_encodings)
         ))
