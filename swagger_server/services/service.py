@@ -1,7 +1,8 @@
 import logging
 import pickle
-
+import tensorflow as tf
 import pandas as pd
+from transformers import TFDistilBertForSequenceClassification, DistilBertTokenizerFast
 
 from swagger_server.models import Scores
 
@@ -14,10 +15,29 @@ class FeatureExtractionService:
         return []
 
 
+class TransformerService(object):
+    def __init__(self):
+        self.en_model = TFDistilBertForSequenceClassification.from_pretrained("models/mwsa_en")
+        self.tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')
+
+
+    def predict(self, lang, input):
+        test_encodings = self.tokenizer(score_input.pair.def1, score_input.pair.def2, truncation=True, padding=True)
+        tf.data.Dataset.from_tensor_slices((
+            dict(test_encodings)
+        ))
+        logger.info('determining mwsa score')
+        predicted = self.en_model.predict(input)
+        logger.info('mwsa score calculated')
+
+        return zip(self.model_map[lang].classes_, predicted[0])
+
+
 class AlignmentScoringService:
-    def __init__(self, lang_model=None):
+    def __init__(self, lang_model=None, transformer_model=None):
         logger.info('loading english model')
         self.model = ModelService() if not lang_model else lang_model
+        self.transformer = TransformerService() if not transformer_model else transformer_model
         logger.info('english model loaded')
 
     def score(self, score_input):
