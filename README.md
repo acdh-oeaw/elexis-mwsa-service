@@ -49,3 +49,19 @@ docker run -p 8080:8080 swagger_server
 ```
 
 #pip install -e git+ssh://gitlab+deploy-token-218175:5yjZ4VbaUkDExr5fag-X@gitlab.com/acdh-oeaw/elexis/mwsa_model.git#egg=mwsa_model
+
+## Example Query
+```
+curl --location --request POST 'https://mwsa-service.acdh-dev.oeaw.ac.at/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "classifier": "randomforst",
+  "pair": {
+    "headword": "olive",
+    "pos": "noun",
+    "lang": "en",
+    "def1": "a type of edible fruit",
+    "def2": "a type of edible fruit which is used as a garnish etc and which gives oil used for cooking"
+  }
+}'
+```
