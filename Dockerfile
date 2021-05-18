@@ -14,6 +14,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN python3 -m nltk.downloader wordnet
 
 COPY . /usr/src/app
+RUN ls
 RUN dvc pull
 
 EXPOSE 5000
