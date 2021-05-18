@@ -1,0 +1,11 @@
+md5: f0a85845bde2872202c8ebfe304cdc4d
+frozen: true
+deps:
+- path: mwsa_model/output/models/de.pkl
+  repo:
+    url: https://gitlab.com/acdh-oeaw/elexis/mwsa_model.git
+    rev_lock: c82258a972573ba90cf878f6b4834d67ee9485f3
+outs:
+- md5: e5f9169fcc5488ed085608fab1b96676
+  size: 3364777
+  path: de.pkl

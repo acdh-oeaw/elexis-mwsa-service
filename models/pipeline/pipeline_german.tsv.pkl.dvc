@@ -1,0 +1,11 @@
+md5: 05bec194be0db1ff6d8d943195443a54
+frozen: true
+deps:
+- path: mwsa_model/output/pipeline/pipeline_german.tsv.pkl
+  repo:
+    url: https://gitlab.com/acdh-oeaw/elexis/mwsa_model.git
+    rev_lock: c82258a972573ba90cf878f6b4834d67ee9485f3
+outs:
+- md5: 89a14f85e53378ad0874e1b0d3ca1576
+  size: 833
+  path: pipeline_german.tsv.pkl

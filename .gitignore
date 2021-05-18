@@ -1,5 +1,5 @@
 /venv/
-.idea
+.idea/**/*
 build
 dist
 **/.DS_Store
@@ -9,5 +9,8 @@ eggs/
 .eggs/
 **/*.zip
 .local
+.tox
 models/mwsa_bert/
 models/mwsa_en/
+mwsa_venv
+mwsa-service-swagger.iml

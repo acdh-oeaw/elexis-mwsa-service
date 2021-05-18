@@ -1,6 +1,7 @@
 import connexion
 import six
 
+from swagger_server.exceptions.exceptions import LanguageNotSupportedException, NotSupportedLanguageProblem
 from swagger_server.models.definition_pair import DefinitionPair  # noqa: E501
 from swagger_server.models.features import Features  # noqa: E501
 from swagger_server.models.score_input import ScoreInput
@@ -37,8 +38,11 @@ def achda_mwsa_scores_post(alignment_scoring_service: AlignmentScoringService, b
     results = []
     if connexion.request.is_json:
         score_input = ScoreInput.from_dict(body)  # noqa: E501
-        results.extend(alignment_scoring_service.score(score_input))
-
+        try:
+            results.extend(alignment_scoring_service.score(score_input))
+        except LanguageNotSupportedException as lnse:
+            raise NotSupportedLanguageProblem(status=400, title="Language not supported", detail=str(lnse))
+        print(results)
     return results
 
 
