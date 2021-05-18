@@ -1,5 +1,7 @@
 FROM python:3.8-buster
 
+ARG GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS
+
 RUN apt-get update
 RUN apt install -y git
 
