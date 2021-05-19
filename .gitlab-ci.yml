@@ -1,0 +1,29 @@
+include:
+  - template: Auto-DevOps.gitlab-ci.yml
+
+image: "python:3.8-buster"
+
+stages:
+  - package
+  - test
+  - deploy
+  - cleanup
+
+build:
+  stage: build
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    DOCKER_HOST: tcp://localhost:2375
+    CI_DEBUG_TRACE: "false"
+  services:
+    - name: docker:19.03.12-dind
+      command: ["--mtu=1450"]
+  script:
+    - dvc pull
+    - export CI_APPLICATION_REPOSITORY=${CI_APPLICATION_REPOSITORY:-$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG}
+      export CI_APPLICATION_TAG=${CI_APPLICATION_TAG:-$CI_COMMIT_SHA}
+    - export
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_APPLICATION_REPOSITORY:$CI_APPLICATION_TAG .
+    - docker push $CI_APPLICATION_REPOSITORY:$CI_APPLICATION_TAG
+
