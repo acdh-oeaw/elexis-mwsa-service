@@ -4,13 +4,13 @@ include:
 image: "python:3.8-buster"
 
 stages:
-  - package
+  - build
   - test
   - deploy
   - cleanup
 
-package_job:
-  stage: package
+build:
+  stage: build
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     DOCKER_HOST: tcp://localhost:2375
