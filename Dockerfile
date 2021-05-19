@@ -2,7 +2,9 @@
 FROM python:3.8-buster
 
 #ARG GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS
-RUN echo GOOGLE_APPLICATION_CREDENTIALS
+RUN echo $GOOGLE_APPLICATION_CREDENTIALS
+RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && echo $GOOGLE_APPLICATION_CREDENTIALS
+
 RUN apt-get update
 RUN apt install -y git
 
@@ -20,7 +22,6 @@ COPY . /usr/src/app
 RUN git init
 RUN ls -la
 RUN git status
-RUN --mount=type=secret,id=auto-devops-build-secrets cat /builds/acdh-oeaw/elexis/mwsa-service-generated.tmp/GOOGLE_APPLICATION_CREDENTIALS
 RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && dvc pull
 
 EXPOSE 5000
