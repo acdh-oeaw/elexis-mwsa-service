@@ -40,7 +40,7 @@ build:
     ##
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-
+    - git clone -v --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
     ##
     ## Optionally, if you will be using any Git commands, set the user name and
     ## and email.
@@ -49,12 +49,10 @@ build:
     # - git config --global user.name "User name"
   script:
     - touch ~/.gitconfig
-    - git config --global user.name $CI_DEPLOY_USER
-    - git config --global user.password $CI_DEPLOY_PASSWORD
     - git config --list
     - echo $CI_DEPLOY_USER
     - pip install "dvc[gs]"==2.0.18
-    - dvc pull
+    - dvc pull -v
     - export CI_APPLICATION_REPOSITORY=${CI_APPLICATION_REPOSITORY:-$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG}
       export CI_APPLICATION_TAG=${CI_APPLICATION_TAG:-$CI_COMMIT_SHA}
     - export
