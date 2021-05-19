@@ -1,5 +1,8 @@
+# syntax = docker/dockerfile:experimental
 FROM python:3.8-buster
 
+#ARG GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS
+RUN echo GOOGLE_APPLICATION_CREDENTIALS
 RUN apt-get update
 RUN apt install -y git
 
@@ -14,7 +17,10 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN python3 -m nltk.downloader wordnet
 
 COPY . /usr/src/app
-RUN dvc pull
+RUN git init
+RUN ls -la
+RUN git status
+RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && dvc pull
 
 EXPOSE 5000
 
