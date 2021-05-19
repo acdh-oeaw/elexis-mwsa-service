@@ -40,7 +40,7 @@ build:
     ##
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - git clone -v --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
+    - git clone -vvv --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
     ##
     ## Optionally, if you will be using any Git commands, set the user name and
     ## and email.
