@@ -20,6 +20,7 @@ COPY . /usr/src/app
 RUN git init
 RUN ls -la
 RUN git status
+RUN --mount=type=secret,id=auto-devops-build-secrets cat /run/secrets/auto-devops-build-secrets
 RUN --mount=type=secret,id=auto-devops-build-secrets . /run/secrets/auto-devops-build-secrets && dvc pull
 
 EXPOSE 5000
