@@ -16,6 +16,7 @@ build:
     - name: docker:19.03.12-dind
       command: ["--mtu=1450"]
   script:
+    - pip install "dvc[gs]"==2.0.18
     - dvc pull
     - export CI_APPLICATION_REPOSITORY=${CI_APPLICATION_REPOSITORY:-$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG}
       export CI_APPLICATION_TAG=${CI_APPLICATION_TAG:-$CI_COMMIT_SHA}
