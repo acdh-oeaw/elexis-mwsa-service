@@ -16,6 +16,8 @@ build:
     - name: docker:19.03.12-dind
       command: ["--mtu=1450"]
   script:
+    - git config --global user.name $CI_DEPLOY_USER
+    - git config --global user.password $CI_DEPLOY_PASSWORD
     - echo $CI_DEPLOY_USER
     - pip install "dvc[gs]"==2.0.18
     - dvc pull
