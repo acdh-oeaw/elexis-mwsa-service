@@ -14,3 +14,4 @@ models/mwsa_bert/
 models/mwsa_en/
 mwsa_venv
 mwsa-service-swagger.iml
+models/demo/

@@ -1,6 +1,3 @@
-include:
-  - template: Auto-DevOps.gitlab-ci.yml
-
 image: "python:3.8-buster"
 
 stages:
