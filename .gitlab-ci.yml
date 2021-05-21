@@ -41,7 +41,6 @@ build:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     #- ssh-add -L
-    - cat /root/.ssh/id_rsa type
     - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     - cat /root/.ssh/id_rsa type -
     - chmod 400 ~/.ssh/id_rsa
