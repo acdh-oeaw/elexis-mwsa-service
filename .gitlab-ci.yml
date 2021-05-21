@@ -49,7 +49,7 @@ build:
     - chmod 400 ~/.ssh/id_rsa
     - cat /root/.ssh/id_rsa
     - echo -e "Host gitlab.com\n\tStrictHostKeyChecking no\n\tUser git\n\tIdentityFile ~/.ssh/id_rsa\n\n" > ~/.ssh/config
-    - ssh -vvv git@gitlab.com
+    - ssh -Tvvv git@gitlab.com
     - git clone -v --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
     ##
     ## Optionally, if you will be using any Git commands, set the user name and
