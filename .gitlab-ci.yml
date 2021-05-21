@@ -41,9 +41,13 @@ build:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     #- ssh-add -L
+    - cd ~/.ssh
+    - pwd
+    - ls -la
     - echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa
-    - cat /root/.ssh/id_rsa
+    - ls -la
     - chmod 400 ~/.ssh/id_rsa
+    - cat /root/.ssh/id_rsa
     - echo -e "Host gitlab.com\n\tStrictHostKeyChecking no\n\tUser git\n\tIdentityFile ~/.ssh/id_rsa\n\n" > ~/.ssh/config
     - ssh -vvv git@gitlab.com
     - git clone -v --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
