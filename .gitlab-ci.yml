@@ -11,7 +11,7 @@ build:
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     DOCKER_HOST: tcp://localhost:2375
-    CI_DEBUG_TRACE: "false"
+    CI_DEBUG_TRACE: "true"
   services:
     - name: docker:19.03.12-dind
       command: ["--mtu=1450"]
