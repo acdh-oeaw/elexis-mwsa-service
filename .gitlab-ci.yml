@@ -48,8 +48,8 @@ build:
     - ls -la
     - chmod 600 ~/.ssh/id_rsa
     - cat /root/.ssh/id_rsa
-    - cat /root/.ssh/config
     - echo -e "Host gitlab.com\n\tStrictHostKeyChecking no\n\tUser git\n\tIdentityFile /root/.ssh/id_rsa\n\n" > /root/.ssh/config
+    - cat /root/.ssh/config
     - ssh -Tvvv git@gitlab.com
     - git clone -v --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
     ##
