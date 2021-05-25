@@ -51,7 +51,7 @@ build:
       Port 443\n
       PreferredAuthentications publickey\n
       IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-    - cat ~/.ssh/config\n
+    - cat ~/.ssh/config
     #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     # - echo -n "$SSH_PRIVATE_KEY" | ssh-add - > /dev/null
     #- cat /root/.ssh/id_ed25519 | ssh-add -
