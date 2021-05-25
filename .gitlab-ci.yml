@@ -44,7 +44,7 @@ build:
     - cd ~/.ssh
     - pwd
     - ls -la
-    - echo "$SSH_PRIVATE_KEY" >> /root/.ssh/id_rsa && chmod 0600 /root/.ssh/id_rsa
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' >> /root/.ssh/id_rsa && chmod 0600 /root/.ssh/id_rsa
     - ls -la
     - chmod 600 ~/.ssh/id_rsa
     - cat /root/.ssh/id_rsa
