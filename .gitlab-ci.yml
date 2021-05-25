@@ -40,15 +40,16 @@ build:
     ## without extra base64 encoding.
     ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
     ##
+    - cat ~/.ssh/id_rsa
     - echo $SSH_PRIVATE_KEY
     - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     - chmod 700 ~/.ssh/id_rsa
     - echo "Host gitlab.com
-      Hostname altssh.gitlab.com
-      User git
-      Port 443
-      PreferredAuthentications publickey
-      IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
+        Hostname altssh.gitlab.com
+        User git
+        Port 443
+        PreferredAuthentications publickey
+        IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
     - echo ~/.ssh/config
     #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     # - echo -n "$SSH_PRIVATE_KEY" | ssh-add - > /dev/null
