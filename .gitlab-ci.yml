@@ -57,7 +57,7 @@ build:
     #- cat /root/.ssh/id_ed25519 | ssh-add -
     #- cat /root/.ssh/id_ed25519
     #- ssh-add -L
-    #- '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    #- '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" >> ~/.ssh/config'
     - cd ~/.ssh
     - pwd
     - ls -la
@@ -65,7 +65,7 @@ build:
     #- cat /root/.ssh/id_rsa
    # - echo -e "Host gitlab.com\n\tStrictHostKeyChecking no\n\tUser git\n\tIdentityFile /root/.ssh/id_rsa\n\n" > /root/.ssh/config
     #- cat /root/.ssh/config
-    - ssh -Tvvv -i ~/.ssh/id_rsa git@gitlab.com
+    - ssh -Tvvv -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
     - git clone -v --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
     ##
     ## Optionally, if you will be using any Git commands, set the user name and
