@@ -42,15 +42,16 @@ build:
     ##
     - echo $SSH_PRIVATE_KEY
     - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
+    - ls -la ~/.ssh
     - chmod 700 ~/.ssh/id_rsa
     - cat ~/.ssh/id_rsa
     - echo "Host gitlab.com
-        Hostname altssh.gitlab.com
-        User git
-        Port 443
-        PreferredAuthentications publickey
-        IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-    - echo ~/.ssh/config
+      Hostname altssh.gitlab.com
+      User git
+      Port 443
+      PreferredAuthentications publickey
+      IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
+    - cat ~/.ssh/config
     #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     # - echo -n "$SSH_PRIVATE_KEY" | ssh-add - > /dev/null
     #- cat /root/.ssh/id_ed25519 | ssh-add -
@@ -64,7 +65,7 @@ build:
     #- cat /root/.ssh/id_rsa
    # - echo -e "Host gitlab.com\n\tStrictHostKeyChecking no\n\tUser git\n\tIdentityFile /root/.ssh/id_rsa\n\n" > /root/.ssh/config
     #- cat /root/.ssh/config
-    - ssh -Tvvv git@gitlab.com
+    - ssh -Tvvv -git@gitlab.com
     - git clone -v --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
     ##
     ## Optionally, if you will be using any Git commands, set the user name and
