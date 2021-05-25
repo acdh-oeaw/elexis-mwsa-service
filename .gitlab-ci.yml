@@ -45,13 +45,13 @@ build:
     - ls -la ~/.ssh
     - chmod 700 ~/.ssh/id_rsa
     - cat ~/.ssh/id_rsa
-    - echo "Host gitlab.com
-      Hostname altssh.gitlab.com
-      User git
-      Port 443
-      PreferredAuthentications publickey
-      IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-    - cat ~/.ssh/config
+    - echo -e "Host gitlab.com\n
+      Hostname altssh.gitlab.com\n
+      User git\n
+      Port 443\n
+      PreferredAuthentications publickey\n
+      IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config\n
+    - cat ~/.ssh/config\n
     #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     # - echo -n "$SSH_PRIVATE_KEY" | ssh-add - > /dev/null
     #- cat /root/.ssh/id_ed25519 | ssh-add -
