@@ -42,8 +42,9 @@ build:
     ##
     - echo $SSH_PRIVATE_KEY
     #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' >> /root/.ssh/id_ed25519 && chmod 0600 /root/.ssh/id_ed25519
-    - cat /root/.ssh/id_ed25519 | ssh-add -
+    - echo "$SSH_PRIVATE_KEY" >> /root/.ssh/id_ed25519 && chmod 0700 /root/.ssh/id_ed25519
+    #- cat /root/.ssh/id_ed25519 | ssh-add -
+    - cat /root/.ssh/id_ed25519
     #- ssh-add -L
     - cd ~/.ssh
     - pwd
