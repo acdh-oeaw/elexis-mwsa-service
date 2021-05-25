@@ -11,7 +11,7 @@ build:
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     DOCKER_HOST: tcp://localhost:2375
-    CI_DEBUG_TRACE: "true"
+    CI_DEBUG_TRACE: "false"
   services:
     - name: docker:19.03.12-dind
       command: ["--mtu=1450"]
@@ -65,7 +65,7 @@ build:
     #- cat /root/.ssh/id_rsa
    # - echo -e "Host gitlab.com\n\tStrictHostKeyChecking no\n\tUser git\n\tIdentityFile /root/.ssh/id_rsa\n\n" > /root/.ssh/config
     #- cat /root/.ssh/config
-    - ssh -Tvvv -git@gitlab.com
+    - ssh -Tvvv -i ~/.ssh/id_rsa git@gitlab.com
     - git clone -v --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
     ##
     ## Optionally, if you will be using any Git commands, set the user name and
