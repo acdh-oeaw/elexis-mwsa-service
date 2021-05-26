@@ -76,6 +76,7 @@ build:
     # - git config --global user.name "User name"
   script:
     - cd /builds/acdh-oeaw/elexis/mwsa-service-generated
+    - ssh -Tvvv -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
     - pip install --upgrade pip setuptools wheel
     - touch ~/.gitconfig
     - pip install "dvc[gs]"==2.0.18
