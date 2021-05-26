@@ -42,6 +42,17 @@ class TestDefaultController(BaseTestCase):
                        'Response body is : ' + response.data.decode('utf-8'))
         self.assertIn('alignment', response.data.decode('utf-8'))
 
+    def test_acdha_mwsa_scores_not_supported_languages(self):
+        body = ScoreInput('bert', DefinitionPair(headword='test', pos='noun', lang='xx', def1='TEST_1', def2='TEST_2'))
+        response = self.client.open(
+            '/ACDH/ACDH_MWSA_Service/1o/achda-mwsa/scores/',
+            method='POST',
+            data=json.dumps(body),
+            content_type='application/json')
+        self.assert400(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+        self.assertIn('Language {} not supported'.format('xx'), response.json['detail'])
+
     def test_acdh_mwsa_get(self):
         """Test case for acdh_mwsa_get
 

@@ -1,73 +1,92 @@
 connexion == 2.6.0
-python_dateutil == 2.6.0
-setuptools >= 21.0.0
-pandas==1.1
-sklearn==0.0
-py~=1.8.1
-pip~=19.0.3
-mock~=4.0.2
-nose~=1.3.7
-docutils~=0.15.2
-pytz~=2020.1
-toml~=0.10.1
-PyYAML~=5.3.1
-Jinja2~=2.11.2
-Werkzeug~=1.0.1
-itsdangerous~=1.1.0
-click~=7.1.2
-scipy~=1.4.1
-MarkupSafe~=1.1.1
-joblib~=0.15.1
-attrs~=19.3.0
-pluggy~=0.13.1
-iniconfig~=1.0.1
-certifi~=2020.4.5.1
-chardet~=3.0.4
-scikit-learn==0.22.1
-preprocessing~=0.1.13
-murmurhash~=1.0.2
-threadpoolctl~=2.1.0
-urllib3~=1.25.9
-coverage~=5.1
-six~=1.15.0
-idna~=2.9
+#Werkzeug~=1.0.1
+dvc[gs]==2.0.18
 Flask~=1.1.2
-clickclick~=1.2.2
-jsonschema~=2.6.0
-requests~=2.23.0
-inflection~=0.4.0
-pyparsing~=2.4.7
-packaging~=20.4
-zipp~=3.1.0
-jmespath~=0.10.0
-plac~=1.1.3
-tqdm~=4.46.1
-#torch~=1.5.0
-srsly~=1.0.2
-thinc~=7.4.0
-gensim~=3.8.3
-tox~=3.15.1
-filelock~=3.0.12
-blis~=0.4.1
-boto~=2.49.0
-nltk~=3.2.4
-regex~=2020.6.8
-future~=0.18.2
-botocore~=1.17.3
-boto3~=1.14.3
-s3transfer~=0.3.3
-cymem~=2.0.3
-wasabi~=0.6.0
-preshed~=3.0.2
-catalogue~=1.0.0
-stanfordnlp~=0.2.0
-virtualenv~=20.0.21
-appdirs~=1.4.4
-distlib~=0.3.0
-spacy~=2.3.2
--e git+https://mwsa-model-token:wgzF_5qTgcqQB7Uy2BUQ@gitlab.com/acdh-oeaw/elexis/mwsa_model.git#egg=mwsa_model
 Flask-Injector~=0.10.0
+pandas==1.1
 tensorflow~=2.4.1
 git+https://github.com/huggingface/transformers.git@master
+spacy~=2.3.2
+spacy-stanza<0.3.0
+scikit-learn==0.24.1
+tox~=3.15.1
+-e git+https://mwsa-model-token:wgzF_5qTgcqQB7Uy2BUQ@gitlab.com/acdh-oeaw/elexis/mwsa_model.git#egg=mwsa_model
 https://github.com/explosion/spacy-models/releases/download/de_core_news_md-2.3.0/de_core_news_md-2.3.0.tar.gz
 https://github.com/explosion/spacy-models/releases/download/en_core_web_md-2.3.1/en_core_web_md-2.3.1.tar.gz
+https://github.com/explosion/spacy-models/releases/download/de_core_news_md-2.3.0/de_core_news_md-2.3.0.tar.gz
+https://github.com/explosion/spacy-models/releases/download/en_core_web_md-2.3.1/en_core_web_md-2.3.1.tar.gz
+https://github.com/explosion/spacy-models/releases/download/da_core_news_md-2.3.0/da_core_news_md-2.3.0.tar.gz
+https://github.com/explosion/spacy-models/releases/download/nl_core_news_md-2.3.0/nl_core_news_md-2.3.0.tar.gz
+https://github.com/explosion/spacy-models/releases/download/it_core_news_md-2.3.0/it_core_news_md-2.3.0.tar.gz
+https://github.com/explosion/spacy-models/releases/download/pt_core_news_md-2.3.0/pt_core_news_md-2.3.0.tar.gz
+
+# python_dateutil == 2.6.0
+# setuptools >= 21.0.0
+
+#
+# py~=1.8.1
+# pip~=19.0.3
+# mock~=4.0.2
+# nose~=1.3.7
+# docutils~=0.15.2
+# pytz~=2020.1
+# toml~=0.10.1
+# PyYAML~=5.3.1
+# Jinja2~=2.11.2
+
+# itsdangerous~=1.1.0
+# click~=7.1.2
+# scipy~=1.4.1
+# MarkupSafe~=1.1.1
+# joblib~=0.15.1
+# attrs~=19.3.0
+# pluggy~=0.13.1
+# iniconfig~=1.0.1
+# certifi~=2020.4.5.1
+# chardet~=3.0.4
+# scikit-learn==0.22.1
+# preprocessing~=0.1.13
+# murmurhash~=1.0.2
+# threadpoolctl~=2.1.0
+# urllib3~=1.25.9
+# coverage~=5.1
+# six~=1.15.0
+# idna~=2.9
+
+# clickclick~=1.2.2
+# jsonschema~=3.2.0
+# requests~=2.23.0
+# inflection~=0.4.0
+# pyparsing~=2.4.7
+# packaging~=20.4
+# zipp~=3.1.0
+# jmespath~=0.10.0
+# plac~=1.1.3
+# tqdm~=4.46.1
+# #torch~=1.5.0
+# srsly~=1.0.2
+# thinc~=7.4.0
+# gensim~=3.8.3
+
+# filelock~=3.0.12
+# blis~=0.4.1
+# boto~=2.49.0
+# nltk~=3.2.4
+# regex~=2020.6.8
+# future~=0.18.2
+# botocore~=1.17.3
+# boto3~=1.14.3
+# s3transfer~=0.3.3
+# cymem~=2.0.3
+# wasabi~=0.6.0
+# preshed~=3.0.2
+# catalogue~=1.0.0
+#
+# virtualenv~=20.0.21
+# appdirs~=1.4.4
+# distlib~=0.3.0
+#
+#
+#
+#
+#

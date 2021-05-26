@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:experimental
 FROM python:3.8-buster
 
 RUN apt-get update
@@ -10,9 +11,13 @@ WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app/
 
 RUN pip3 install --no-cache-dir -r requirements.txt
+
 RUN python3 -m nltk.downloader wordnet
 
 COPY . /usr/src/app
+RUN git init
+RUN ls -la
+RUN git status
 
 EXPOSE 5000
 
