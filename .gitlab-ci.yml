@@ -8,6 +8,7 @@ stages:
 
 build:
   stage: build
+  image: "docker:20.10.6"
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     DOCKER_HOST: tcp://localhost:2375
