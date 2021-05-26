@@ -29,7 +29,7 @@ build:
     - apk update
     - apk add git
     - apk add py-pip
-    - apk add --no-cache --virtual .build-deps g++ python3-dev libffi-dev openssl-dev
+    - apk add --no-cache --virtual .build-deps g++ python3-dev libffi-dev openssl-dev libgit2-dev
     - whoami
     - eval $(ssh-agent -s)
 
