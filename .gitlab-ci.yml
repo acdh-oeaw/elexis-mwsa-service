@@ -26,6 +26,8 @@ build:
     ##
     ## Run ssh-agent (inside the build environment)
     ##
+    - apt-get update
+    - apt-get install git
     - whoami
     - eval $(ssh-agent -s)
 
