@@ -81,6 +81,7 @@ build:
   script:
     - cd /builds/acdh-oeaw/elexis/mwsa-service-generated
     - ssh -Tvvv -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
+    - pip install --upgrade pip
     - git clone -v --no-single-branch --progress git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
     - touch ~/.gitconfig
     - git config --list
