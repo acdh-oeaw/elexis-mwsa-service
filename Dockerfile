@@ -13,8 +13,7 @@ COPY requirements.txt /usr/src/app/
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 RUN python3 -m nltk.downloader wordnet
-RUN stanza.download('sl')
-RUN stanza.download('sr')
+RUN python3 swagger_server.language_model_install.py
 
 COPY . /usr/src/app
 

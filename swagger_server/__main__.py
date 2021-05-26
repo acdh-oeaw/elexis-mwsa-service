@@ -28,6 +28,7 @@ def configure(binder: Binder):
 
 
 def main():
+
     app.app.json_encoder = encoder.JSONEncoder
     app.add_api('swagger.yaml', arguments={'title': 'ACDH MWSA Service'}, pythonic_params=True)
     FlaskInjector(app=app.app, modules=[configure])
