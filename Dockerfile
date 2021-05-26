@@ -13,8 +13,11 @@ COPY requirements.txt /usr/src/app/
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 RUN python3 -m nltk.downloader wordnet
+RUN stanza.download('sl')
+RUN stanza.download('sr')
 
 COPY . /usr/src/app
+
 RUN git init
 RUN ls -la
 RUN git status
