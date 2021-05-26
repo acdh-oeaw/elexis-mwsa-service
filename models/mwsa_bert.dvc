@@ -1,0 +1,5 @@
+outs:
+- md5: 3800786884946f6e2ed73e98b333bb6e.dir
+  size: 1341570294
+  nfiles: 8
+  path: mwsa_bert
