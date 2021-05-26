@@ -3,12 +3,6 @@ image: "python:3.8-buster"
 include:
   - template: Auto-DevOps.gitlab-ci.yml
 
-stages:
-  - build
-  - test
-  - deploy
-  - cleanup
-
 build:
   stage: build
   image: "docker:20.10.6"
