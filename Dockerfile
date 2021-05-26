@@ -12,10 +12,10 @@ COPY requirements.txt /usr/src/app/
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
+COPY . /usr/src/app
+
 RUN python3 -m nltk.downloader wordnet
 RUN python3 swagger_server/language_model_install.py
-
-COPY . /usr/src/app
 
 RUN git init
 RUN ls -la
