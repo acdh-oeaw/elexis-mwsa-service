@@ -47,7 +47,7 @@ spec:
       volumes:
         - name: mwsamodels
           persistentVolumeClaim:
-            claimName: mwsawordvectors
+            claimName: mwsamodels
       initContainers:
         - name: init-mwsa
           image: python:3.8-buster
