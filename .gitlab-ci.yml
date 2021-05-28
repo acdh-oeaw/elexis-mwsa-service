@@ -59,7 +59,7 @@ build:
     - pip install --upgrade pip setuptools wheel
     - touch ~/.gitconfig
     - pip install "dvc[gs]"==2.0.18
-    - dvc pull -v
+    #- dvc pull -v
     - export CI_APPLICATION_REPOSITORY=${CI_APPLICATION_REPOSITORY:-$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG}
       export CI_APPLICATION_TAG=${CI_APPLICATION_TAG:-$CI_COMMIT_SHA}
     - docker -l debug login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
