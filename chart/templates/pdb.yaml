@@ -4,7 +4,10 @@ kind: PodDisruptionBudget
 metadata:
   name: {{ template "fullname" . }}
   labels:
-{{ include "sharedlabels" . | indent 4 }}
+    app: {{ template "appname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
 {{- if .Values.podDisruptionBudget.minAvailable }}
   minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}

@@ -1,5 +1,5 @@
 {{- if not .Values.application.initializeCommand -}}
-apiVersion: apps/v1
+apiVersion: {{ default "extensions/v1beta1" .Values.deploymentApiVersion }}
 kind: Deployment
 metadata:
   name: {{ template "trackableappname" . }}
@@ -7,16 +7,21 @@ metadata:
     {{ if .Values.gitlab.app }}app.gitlab.com/app: {{ .Values.gitlab.app | quote }}{{ end }}
     {{ if .Values.gitlab.env }}app.gitlab.com/env: {{ .Values.gitlab.env | quote }}{{ end }}
   labels:
+    app: {{ template "appname" . }}
     track: "{{ .Values.application.track }}"
     tier: "{{ .Values.application.tier }}"
-{{ include "sharedlabels" . | indent 4 }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
+{{- if or .Values.enableSelector (eq (default "extensions/v1beta1" .Values.deploymentApiVersion) "apps/v1") }}
   selector:
     matchLabels:
       app: {{ template "appname" . }}
       track: "{{ .Values.application.track }}"
       tier: "{{ .Values.application.tier }}"
       release: {{ .Release.Name }}
+{{- end }}
   replicas: {{ .Values.replicaCount }}
 {{- if .Values.strategyType }}
   strategy:
@@ -32,53 +37,39 @@ spec:
 {{ toYaml .Values.podAnnotations | indent 8 }}
 {{- end }}
       labels:
+        app: {{ template "appname" . }}
         track: "{{ .Values.application.track }}"
         tier: "{{ .Values.application.tier }}"
-{{ include "sharedlabels" . | indent 8 }}
+        release: {{ .Release.Name }}
     spec:
-{{- if .Values.serviceAccountName }}
-      serviceAccountName: {{ .Values.serviceAccountName | quote }}
-{{- end }}
       imagePullSecrets:
 {{ toYaml .Values.image.secrets | indent 10 }}
-{{- if .Values.nodeSelector }}
-      nodeSelector:
-{{ toYaml .Values.nodeSelector | indent 8 }}
-{{- end }}
-{{- if .Values.tolerations }}
-      tolerations:
-{{ toYaml .Values.tolerations | indent 8 }}
-{{- end }}
-{{- if .Values.affinity }}
-      affinity:
-{{ toYaml .Values.affinity | indent 8 }}
-{{- end }}
       volumes:
         - name: mwsamodels
           persistentVolumeClaim:
             claimName: mwsawordvectors
       initContainers:
-      - name: init-mwsa
-        image: python:3.8-buster
-        volumeMounts:
-          - mountPath: /mwsa
-            name: mwsamodels
-            subpath: /models
-        command: ['cd', '/mwsa/models', 'echo', 'test']
+        - name: init-mwsa
+          image: python:3.8-buster
+          volumeMounts:
+            - mountPath: /mwsa
+              name: mwsamodels
+              subpath: /models
       containers:
       - name: {{ .Chart.Name }}
         image: {{ template "imagename" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- if .Values.application.secretName }}
+        volumeMounts:
+          - mountPath: /mwsa
+            name: mwsamodels
+            subpath: /models
         envFrom:
         - secretRef:
             name: {{ .Values.application.secretName }}
         {{- end }}
-        volumeMounts:
-        - mountPath: /mwsa
-          name: mwsamodels
-          subpath: /models
-        env: {{- if .Values.postgresql.managed }}
+        env:
+{{- if .Values.postgresql.managed }}
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
@@ -93,37 +84,49 @@ spec:
           valueFrom:
             secretKeyRef:
               name: app-postgres
-              key: privateIP {{- end }}
+              key: privateIP
+{{- end }}
         - name: DATABASE_URL
           value: {{ .Values.application.database_url | quote }}
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL
-          value: {{ .Values.gitlab.envURL | quote }} {{- if .Values.lifecycle }}
-        lifecycle: {{ toYaml .Values.lifecycle | indent 10 }} {{- end }}
+          value: {{ .Values.gitlab.envURL | quote }}
         ports:
         - name: "{{ .Values.service.name }}"
           containerPort: {{ .Values.service.internalPort }}
-        livenessProbe: {{- if eq .Values.livenessProbe.probeType "httpGet" }}
+        livenessProbe:
+{{- if eq .Values.livenessProbe.probeType "httpGet" }}
           httpGet:
             path: {{ .Values.livenessProbe.path }}
             scheme: {{ .Values.livenessProbe.scheme }}
-            port: {{ .Values.livenessProbe.port | default .Values.service.internalPort }} {{- else if eq .Values.livenessProbe.probeType "tcpSocket" }}
+            port: {{ .Values.service.internalPort }}
+{{- else if eq .Values.livenessProbe.probeType "tcpSocket" }}
           tcpSocket:
-            port: {{ .Values.livenessProbe.port | default .Values.service.internalPort }} {{- else if eq .Values.livenessProbe.probeType "exec" }}
+            port: {{ .Values.service.internalPort }}
+{{- else if eq .Values.livenessProbe.probeType "exec" }}
           exec:
-            command: {{ toYaml .Values.livenessProbe.command | indent 14 }} {{- end }}
+            command:
+{{ toYaml .Values.livenessProbe.command | indent 14 }}
+{{- end }}
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
-        readinessProbe: {{- if eq .Values.readinessProbe.probeType "httpGet" }}
+        readinessProbe:
+{{- if eq .Values.readinessProbe.probeType "httpGet" }}
           httpGet:
             path: {{ .Values.readinessProbe.path }}
             scheme: {{ .Values.readinessProbe.scheme }}
-            port: {{ .Values.readinessProbe.port | default .Values.service.internalPort }} {{- else if eq .Values.readinessProbe.probeType "tcpSocket" }}
+            port: {{ .Values.service.internalPort }}
+{{- else if eq .Values.readinessProbe.probeType "tcpSocket" }}
           tcpSocket:
-            port: {{ .Values.readinessProbe.port | default .Values.service.internalPort }} {{- else if eq .Values.readinessProbe.probeType "exec" }}
+            port: {{ .Values.service.internalPort }}
+{{- else if eq .Values.readinessProbe.probeType "exec" }}
           exec:
-            command: {{ toYaml .Values.readinessProbe.command | indent 14 }} {{- end }}
+            command:
+{{ toYaml .Values.readinessProbe.command | indent 14 }}
+{{- end }}
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
-        resources: {{ toYaml .Values.resources | indent 12 }} {{- end -}}
+        resources:
+{{ toYaml .Values.resources | indent 12 }}
+{{- end -}}
