@@ -16,4 +16,3 @@ swagger_server.egg-info
 build
 dist
 /**/.DS_Store
-models/**/*
