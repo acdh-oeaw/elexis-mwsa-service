@@ -16,4 +16,8 @@ swagger_server.egg-info
 build
 dist
 /**/.DS_Store
-models/**/*
+models/*.pkl
+models/pipeline/*.pkl
+models/mwsa_bert
+models/mwsa_bert_de
+
