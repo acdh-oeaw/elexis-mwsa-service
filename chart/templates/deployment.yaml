@@ -50,7 +50,13 @@ spec:
             claimName: mwsamodels
       initContainers:
         - name: init-mwsa
-          image: python:3.8-buster
+          image: registry.gitlab.com/acdh-oeaw/elexis/mwsa-service-generated/init:latest
+          imagePullPolicy: { { .Values.image.pullPolicy } }
+          { { - if .Values.application.secretName } }
+          envFrom:
+            - secretRef:
+                name: { { .Values.application.secretName } }
+          { { - end } }
           volumeMounts:
             - mountPath: /mwsa
               name: mwsamodels
