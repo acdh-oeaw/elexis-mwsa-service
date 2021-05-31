@@ -66,4 +66,5 @@ build:
     - docker -l debug build -t $CI_APPLICATION_REPOSITORY:$CI_APPLICATION_TAG .
     - docker -l debug build -t $CI_REGISTRY_IMAGE/init:latest -f Dockerfile.init .
     - docker -l debug push $CI_APPLICATION_REPOSITORY:$CI_APPLICATION_TAG
+    - docker -l debug push $CI_REGISTRY_IMAGE/init:latest
 
