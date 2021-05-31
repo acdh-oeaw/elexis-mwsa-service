@@ -42,25 +42,24 @@ spec:
         tier: "{{ .Values.application.tier }}"
         release: {{ .Release.Name }}
     spec:
-      imagePullSecrets:
-{{ toYaml .Values.image.secrets | indent 10 }}
+      imagePullSecrets: {{ toYaml .Values.image.secrets | indent 10 }}
       volumes:
-        - name: mwsamodels
-          persistentVolumeClaim:
-            claimName: mwsamodels
+      - name: mwsamodels
+        persistentVolumeClaim:
+          claimName: mwsamodels
       initContainers:
-        - name: init-mwsa
-          image: registry.gitlab.com/acdh-oeaw/elexis/mwsa-service-generated/init:latest
-          imagePullPolicy: { { .Values.image.pullPolicy } }
-          { { - if .Values.application.secretName } }
-          envFrom:
-            - secretRef:
-                name: { { .Values.application.secretName } }
-          { { - end } }
-          volumeMounts:
-            - mountPath: /mwsa
-              name: mwsamodels
-              subpath: /models
+      - name: init-mwsa
+        image: registry.gitlab.com/acdh-oeaw/elexis/mwsa-service-generated/init:latest
+        imagePullPolicy: { { .Values.image.pullPolicy } }
+        { { - if .Values.application.secretName } }
+        envFrom:
+          - secretRef:
+              name: { { .Values.application.secretName } }
+        { { - end } }
+        volumeMounts:
+          - mountPath: /mwsa
+            name: mwsamodels
+            subpath: /models
       containers:
       - name: {{ .Chart.Name }}
         image: {{ template "imagename" . }}
