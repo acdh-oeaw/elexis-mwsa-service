@@ -42,18 +42,19 @@ spec:
         tier: "{{ .Values.application.tier }}"
         release: {{ .Release.Name }}
     spec:
-      imagePullSecrets: {{ toYaml .Values.image.secrets | indent 10 }}
+      imagePullSecrets:
+{{ toYaml .Values.image.secrets | indent 10 }}
       volumes:
-      - name: mwsamodels
-        persistentVolumeClaim:
-          claimName: mwsamodels
+        - name: mwsamodels
+          persistentVolumeClaim:
+            claimName: mwsamodels
       initContainers:
-      - name: init-mwsa
-        image: python:3.8-buster
-        volumeMounts:
-          - mountPath: /mwsa
-            name: mwsamodels
-            subpath: /models
+        - name: init-mwsa
+          image: python:3.8-buster
+          volumeMounts:
+            - mountPath: /mwsa
+              name: mwsamodels
+              subpath: /models
       containers:
       - name: {{ .Chart.Name }}
         image: {{ template "imagename" . }}
