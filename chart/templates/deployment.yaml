@@ -55,6 +55,11 @@ spec:
             - mountPath: /mwsa
               name: mwsamodels
               subpath: /models
+          { { - if .Values.application.secretName } }
+          envFrom:
+            - secretRef:
+                name: { { .Values.application.secretName } }
+          { { - end } }
       containers:
       - name: {{ .Chart.Name }}
         image: {{ template "imagename" . }}
