@@ -51,16 +51,10 @@ spec:
       initContainers:
         - name: init-mwsa
           image: "registry.gitlab.com/acdh-oeaw/elexis/mwsa-service-generated/init:latest"
-          imagePullPolicy: { { .Values.image.pullPolicy } }
-          { { - if .Values.application.secretName } }
           volumeMounts:
             - mountPath: /mwsa
               name: mwsamodels
               subpath: /models
-          envFrom:
-            - secretRef:
-                name: { { .Values.application.secretName } }
-          { { - end } }
       containers:
       - name: {{ .Chart.Name }}
         image: {{ template "imagename" . }}
