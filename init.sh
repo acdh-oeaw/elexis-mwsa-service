@@ -7,7 +7,7 @@ ls -la ~/.ssh
 printenv
 echo "${GITLAB}" > ~/.ssh/id_rsa
 echo "${GOOGLE_APPLICATION_CREDENTIALS}" > ~/.creds/gcp.json
-export GOOGLE_APPLICATION_CREDENTIALS=/root/.creds/gcp.json
+export GOOGLE_APPLICATION_CREDENTIALS="/root/.creds/gcp.json"
 printenv
 cat ~/.ssh/id_rsa
 cat ~/.creds/gcp.json
