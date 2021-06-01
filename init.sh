@@ -1,5 +1,4 @@
 #!/bin/sh
-#sleep 5m
 eval $(ssh-agent -s)
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
@@ -17,5 +16,9 @@ ssh -Tvvv -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
 pip install --upgrade pip setuptools wheel
 touch ~/.gitconfig
 #pip install "dvc[gs]"==2.0.18
-mkdir -p /Users/seungbinyim/mwsa/models
-cp -R /usr/src/app/models/* /Users/seungbinyim/mwsa/models
+ls -la /usr/src/app/models
+ls -la /usr/src/app
+ls -la /mwsa
+cp -R /usr/src/app/models/* /mwsa
+ls -la /mwsa
+sleep 5m
