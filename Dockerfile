@@ -3,6 +3,7 @@ FROM python:3.8-buster
 
 RUN apt-get update && \
     apt install -y git && \
+    g++ python3-dev libffi-dev openssl-dev
     apt install -y libgit2-dev && \
     mkdir -p /usr/src/app && \
     pip install --upgrade pip setuptools wheel && \
