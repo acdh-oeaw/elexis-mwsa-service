@@ -55,6 +55,8 @@ build:
       IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
   script:
     - cd /builds/acdh-oeaw/elexis/mwsa-service-generated
+    - ls -la /builds/acdh-oeaw/elexis/mwsa-service-generated
+    - ls -la /builds/acdh-oeaw/elexis/mwsa-service-generated/models
     - ssh -Tvvv -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
     - pip install --upgrade pip setuptools wheel
     - touch ~/.gitconfig
