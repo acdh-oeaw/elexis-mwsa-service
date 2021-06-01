@@ -2,6 +2,7 @@
 # This is a comment!
 apk update
 apk add git
+sleep 5m
 eval $(ssh-agent -s)
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
@@ -18,5 +19,5 @@ cd /builds/acdh-oeaw/elexis/mwsa-service-generated
 ssh -Tvvv -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
 pip install --upgrade pip setuptools wheel
 touch ~/.gitconfig
-pip install "dvc[gs]"==2.0.18
-cp -R models/* /mwsa/models
+#pip install "dvc[gs]"==2.0.18
+cp -R /builds/acdh-oeaw/elexis/mwsa-service-generated/models/* /mwsa/models
