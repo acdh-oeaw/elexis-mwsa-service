@@ -2,7 +2,8 @@
 eval $(ssh-agent -s)
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
-echo "${K8S_SECRET_GITLAB}" > ~/.ssh/id_rsa
+echo "${GITLAB}" > ~/.ssh/id_rsa
+echo "${}"
 ls -la ~/.ssh
 chmod 700 ~/.ssh/id_rsa
 echo "Host gitlab.com\n
