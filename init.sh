@@ -4,7 +4,8 @@ mkdir -p ~/.ssh
 mkdir -p ~/.creds
 chmod 700 ~/.ssh
 ls -la ~/.ssh
-echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
+printenv
+echo "${GITLAB}" > ~/.ssh/id_rsa
 echo "${GOOGLE_APPLICATION_CREDENTIALS}" > ~/.creds/gcp.json
 export GOOGLE_APPLICATION_CREDENTIALS=~/.creds/gcp.json
 cat ~/.ssh/id_rsa
