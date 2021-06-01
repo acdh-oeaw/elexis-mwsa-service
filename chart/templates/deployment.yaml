@@ -60,14 +60,14 @@ spec:
         image: {{ template "imagename" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- if .Values.application.secretName }}
-        volumeMounts:
-          - mountPath: /mwsa
-            name: mwsamodels
-            subpath: /models
         envFrom:
         - secretRef:
             name: {{ .Values.application.secretName }}
         {{- end }}
+        volumeMounts:
+          - mountPath: /mwsa
+            name: mwsamodels
+            subpath: /models
         env:
 {{- if .Values.postgresql.managed }}
         - name: POSTGRES_USER

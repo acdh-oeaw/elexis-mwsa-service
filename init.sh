@@ -3,7 +3,7 @@ eval $(ssh-agent -s)
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 echo "${GITLAB}" > ~/.ssh/id_rsa
-echo "${}"
+echo "${GOOGLE_APPLICATION_CREDENTIALS}"
 ls -la ~/.ssh
 chmod 700 ~/.ssh/id_rsa
 echo "Host gitlab.com\n
