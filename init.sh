@@ -1,8 +1,5 @@
 #!/bin/sh
-# This is a comment!
-apk update
-apk add git
-sleep 5m
+#sleep 5m
 eval $(ssh-agent -s)
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
@@ -15,9 +12,10 @@ echo "Host gitlab.com\n
       Port 443\n
       PreferredAuthentications publickey\n
       IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-cd /builds/acdh-oeaw/elexis/mwsa-service-generated
+cd /usr/src/app || exit
 ssh -Tvvv -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
 pip install --upgrade pip setuptools wheel
 touch ~/.gitconfig
 #pip install "dvc[gs]"==2.0.18
-cp -R /builds/acdh-oeaw/elexis/mwsa-service-generated/models/* /mwsa/models
+mkdir -p /Users/seungbinyim/mwsa/models
+cp -R /usr/src/app/models/* /Users/seungbinyim/mwsa/models

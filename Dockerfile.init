@@ -1,18 +1,13 @@
 # syntax = docker/dockerfile:experimental
 FROM python:3.8-buster
 
-
-ENV SSH_KEY=$K8S_SECRET_GITLAB
-
-RUN echo $SSH_KEY
-
 RUN apt-get update && \
     apt install -y git && \
     mkdir -p /usr/src/app
 
+COPY . /usr/src/app
 WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app/
 RUN pip3 install --no-cache-dir -r requirements.txt
-COPY . /usr/src/app
-RUN git init && dvc init && dvc pull
+
 ENTRYPOINT ["sh","init.sh"]
