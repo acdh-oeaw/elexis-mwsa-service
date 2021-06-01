@@ -1,10 +1,14 @@
 #!/bin/sh
-echo "${GITLAB}" > ~/.ssh/id_rsa
-echo "${GOOGLE_APPLICATION_CREDENTIALS}"
 eval $(ssh-agent -s)
 mkdir -p ~/.ssh
+mkdir -p ~/.creds
 chmod 700 ~/.ssh
 ls -la ~/.ssh
+echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
+echo "${GOOGLE_APPLICATION_CREDENTIALS}" > ~/.creds/gcp.json
+export GOOGLE_APPLICATION_CREDENTIALS=~/.creds/gcp.json
+cat ~/.ssh/id_rsa
+cat ~/.creds/gcp.json
 chmod 700 ~/.ssh/id_rsa
 echo "Host gitlab.com\n
       Hostname altssh.gitlab.com\n
