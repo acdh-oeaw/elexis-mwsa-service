@@ -10,7 +10,7 @@ echo "${GOOGLE_APPLICATION_CREDENTIALS}" > ~/.creds/gcp.json
 export GOOGLE_APPLICATION_CREDENTIALS="/root/.creds/gcp.json"
 printenv
 cat ~/.ssh/id_rsa
-cat ~/.creds/gcp.json
+cat /root/.creds/gcp.json
 chmod 700 ~/.ssh/id_rsa
 chmod 700 /root/.creds/gcp.json
 echo "Host gitlab.com\n
@@ -20,7 +20,7 @@ echo "Host gitlab.com\n
       PreferredAuthentications publickey\n
       IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
 
-ssh -T -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
+#ssh -T -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
 cd /usr/src/app || exit
 pip install --upgrade pip setuptools wheel
 git clone git@gitlab.com:acdh-oeaw/elexis/mwsa-service-generated.git
