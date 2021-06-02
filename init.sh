@@ -20,7 +20,7 @@ echo "Host gitlab.com\n
       PreferredAuthentications publickey\n
       IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
 
-#ssh -T -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
+ssh -T -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no git@gitlab.com
 cd /usr/src/app || exit
 pip install --upgrade pip setuptools wheel
 git clone git@gitlab.com:acdh-oeaw/elexis/mwsa-service-generated.git
