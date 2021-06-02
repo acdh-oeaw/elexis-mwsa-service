@@ -3,7 +3,7 @@ FROM python:3.8-buster
 
 RUN apt-get update && \
     apt install -y git && \
-    apt install -y libgit2-dev && \
+    apt inspitall -y libgit2-dev && \
     mkdir -p /usr/src/app && \
     pip install --upgrade pip setuptools wheel && \
     pip install "dvc[gs]"==2.0.18

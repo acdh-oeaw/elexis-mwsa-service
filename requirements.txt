@@ -4,6 +4,7 @@ connexion == 2.6.0
 dvc[gs]==2.0.18
 Flask==1.1.2
 Flask-Injector==0.10.0
+nltk==3.3
 pandas==1.1
 tensorflow~=2.4.1
 transformers==4.6.0
