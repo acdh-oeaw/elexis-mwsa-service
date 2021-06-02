@@ -4,13 +4,13 @@ mkdir -p ~/.ssh
 mkdir -p ~/.creds
 chmod 700 ~/.ssh
 ls -la ~/.ssh
-printenv
+echo "----- SETTING ENV -------"
 echo "${GITLAB}" > ~/.ssh/id_rsa
 echo "${GOOGLE_APPLICATION_CREDENTIALS}" > ~/.creds/gcp.json
 export GOOGLE_APPLICATION_CREDENTIALS="/root/.creds/gcp.json"
-printenv
 cat ~/.ssh/id_rsa
-cat /root/.creds/gcp.json
+cat $GOOGLE_APPLICATION_CREDENTIALS
+echo "----- END ENV ------"
 chmod 700 ~/.ssh/id_rsa
 chmod 700 /root/.creds/gcp.json
 echo "Host gitlab.com\n
