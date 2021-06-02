@@ -6,7 +6,8 @@ chmod 700 ~/.ssh
 ls -la ~/.ssh
 echo "----- SETTING ENV -------"
 echo "${GITLAB}" > ~/.ssh/id_rsa
-echo "${GOOGLE_APPLICATION_CREDENTIALS}" > ~/.creds/gcp.json
+printf '%s\n' "$GOOGLE_APPLICATION_CREDENTIALS" > /root/.creds/gcp.json
+#echo "${GOOGLE_APPLICATION_CREDENTIALS}" > ~/.creds/gcp.json
 export GOOGLE_APPLICATION_CREDENTIALS="/root/.creds/gcp.json"
 cat ~/.ssh/id_rsa
 cat $GOOGLE_APPLICATION_CREDENTIALS
