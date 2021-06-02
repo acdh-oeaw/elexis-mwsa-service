@@ -34,4 +34,3 @@ ls -la /usr/src/app/mwsa-service-generated
 ls -la /mwsa
 cp -R /usr/src/app/mwsa-service-generated/models/* /mwsa
 ls -la /mwsa
-sleep 5m
