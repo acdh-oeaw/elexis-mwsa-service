@@ -13,6 +13,7 @@ logger.setLevel(logging.INFO)
 
 class TransformerModel():
     def __init__(self, dir: str):
+        logger.info('MODEL DIR: ' + dir)
         self.model: TFBertForSequenceClassification = TFBertForSequenceClassification.from_pretrained(dir)
         self.config: PretrainedConfig = PretrainedConfig.from_pretrained(dir + '/config.json')
         self.tokenizer: BertTokenizerFast = BertTokenizerFast.from_pretrained(dir)
