@@ -10,6 +10,7 @@ from swagger_server.models import Scores, ScoreInput
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+models_dir = "/mwsa"
 
 class TransformerModel():
     def __init__(self, dir: str):
@@ -27,8 +28,8 @@ class FeatureExtractionService:
 class TransformerService(object):
     def __init__(self):
         self.models = {}
-        self.models['en'] = TransformerModel("/mwsa/mwsa_bert")
-        self.models['de'] = TransformerModel("/mwsa/mwsa_bert_de")
+        self.models['en'] = TransformerModel(models_dir + "/mwsa_bert")
+        self.models['de'] = TransformerModel(models_dir + "/mwsa_bert_de")
 
     def predict(self, lang, input):
         if lang not in self.models.keys():
@@ -90,10 +91,10 @@ class ModelService:
         self.model_map = {}
         self.pipeline_map = {}
 
-        en_file_path = '/mwsa/en.pkl'
-        en_pipeline_path = '/mwsa/pipeline/pipeline_english_nuig.tsv.pkl'
-        de_file_path = '/mwsa/de.pkl'
-        de_pipeline_path = '/mwsa/pipeline/pipeline_english_nuig.tsv.pkl'
+        en_file_path = models_dir + '/en.pkl'
+        en_pipeline_path = models_dir + '/pipeline/pipeline_english_nuig.tsv.pkl'
+        de_file_path = models_dir + '/de.pkl'
+        de_pipeline_path = models_dir + '/pipeline/pipeline_english_nuig.tsv.pkl'
 
         with open(en_pipeline_path, 'rb') as en_file:
             self.pipeline_map['en'] = pickle.load(en_file)
