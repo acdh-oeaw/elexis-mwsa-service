@@ -4,16 +4,12 @@ mkdir -p ~/.ssh
 mkdir -p ~/.creds
 chmod 700 ~/.ssh
 ls -la ~/.ssh
-echo "----- SETTING ENV -------"
 echo "${GITLAB}" > ~/.ssh/id_rsa
-printf '%s\n' "$GOOGLE_APPLICATION_CREDENTIALS" > /root/.creds/gcp.json
+printf '%s\n' "$GOOGLE_APPLICATION_CREDENTIALS" > ~/.creds/gcp.json
 #echo "${GOOGLE_APPLICATION_CREDENTIALS}" > ~/.creds/gcp.json
-export GOOGLE_APPLICATION_CREDENTIALS="/root/.creds/gcp.json"
-cat ~/.ssh/id_rsa
-cat $GOOGLE_APPLICATION_CREDENTIALS
-echo "----- END ENV ------"
+export GOOGLE_APPLICATION_CREDENTIALS="~/.creds/gcp.json"
 chmod 700 ~/.ssh/id_rsa
-chmod 700 /root/.creds/gcp.json
+chmod 700 ~/.creds/gcp.json
 echo "Host gitlab.com\n
       Hostname altssh.gitlab.com\n
       User git\n
@@ -34,3 +30,9 @@ ls -la /usr/src/app/mwsa-service-generated
 ls -la /mwsa
 cp -R /usr/src/app/mwsa-service-generated/models/* /mwsa
 ls -la /mwsa
+python -m spacy download de_core_news_md
+python -m spacy download en_core_web_md
+python -m spacy download da_core_news_md
+python -m spacy download nl_core_news_md
+python -m spacy download it_core_news_md
+python -m spacy download pt_core_news_md
