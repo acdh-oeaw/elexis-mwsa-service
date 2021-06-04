@@ -30,9 +30,9 @@ def configure(binder: Binder):
 
 
 def main():
-    nltk.download('wordnet')
-    stanza.download('sl')
-    stanza.download('sr')
+ #   nltk.download('wordnet')
+ #   stanza.download('sl')
+ #   stanza.download('sr')
     app.app.json_encoder = encoder.JSONEncoder
     app.add_api('swagger.yaml', arguments={'title': 'ACDH MWSA Service'}, pythonic_params=True)
     FlaskInjector(app=app.app, modules=[configure])
