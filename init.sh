@@ -30,9 +30,3 @@ ls -la /usr/src/app/mwsa-service-generated
 ls -la /mwsa
 cp -R /usr/src/app/mwsa-service-generated/models/* /mwsa
 ls -la /mwsa
-python -m spacy download de_core_news_md
-python -m spacy download en_core_web_md
-python -m spacy download da_core_news_md
-python -m spacy download nl_core_news_md
-python -m spacy download it_core_news_md
-python -m spacy download pt_core_news_md
