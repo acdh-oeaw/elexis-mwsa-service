@@ -23,8 +23,6 @@ pip install --upgrade pip setuptools wheel
 git clone git@gitlab.com:acdh-oeaw/elexis/mwsa-service-generated.git
 cd mwsa-service-generated || exit
 dvc pull
-#touch ~/.gitconfig
-#pip install "dvc[gs]"==2.0.18
 ls -la /usr/src/app/mwsa-service-generated/models
 ls -la /usr/src/app/mwsa-service-generated
 ls -la /mwsa

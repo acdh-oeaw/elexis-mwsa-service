@@ -2,6 +2,8 @@ import logging
 import pickle
 import tensorflow as tf
 import pandas as pd
+import yaml
+from pyaml_env import parse_config
 from transformers import TFBertForSequenceClassification, BertTokenizerFast, PretrainedConfig
 
 from swagger_server.exceptions.exceptions import LanguageNotSupportedException
@@ -10,7 +12,11 @@ from swagger_server.models import Scores, ScoreInput
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-models_dir = "/mwsa"
+config_file = 'config.yaml'
+#with open(config_file, 'r') as fd:
+#    params = yaml.safe_load(fd)
+config = parse_config('config.yaml')
+models_dir = config['default']['model_path']
 
 class TransformerModel():
     def __init__(self, dir: str):
@@ -50,9 +56,11 @@ class TransformerService(object):
         logger.info('mwsa score calculated {}'.format(predicted))
         logger.debug(list(model.config.id2label.values()))
         logger.debug(predicted[0])
-        logger.debug(zip(model.config.id2label.keys(), predicted[0][0]))
+        probabilities = tf.nn.softmax(predicted.logits)
+        logger.debug(probabilities)
+        logger.debug(zip(model.config.id2label.keys(), probabilities.numpy()[0]))
 
-        return zip(list(model.config.id2label.values()), predicted[0][0])
+        return zip(list(model.config.id2label.values()), probabilities.numpy()[0])
 
 
 class AlignmentScoringService:
@@ -68,9 +76,16 @@ class AlignmentScoringService:
                   'def2': [score_input.pair.def2]})
 
         if score_input.classifier == 'bert':
-            return [self._highest_score(self.transformer.predict(score_input.pair.lang, df))]
+            return self._all_scores(self.transformer.predict(score_input.pair.lang, df))
 
-        return [self._highest_score(self.model.predict(score_input.pair.lang, df))]
+        return self._all_scores(self.model.predict(score_input.pair.lang, df))
+
+    def _all_scores(self, prob):
+        all_scores= []
+        for label_prob in prob:
+            all_scores.append(Scores(alignment=label_prob[0], probability=str(label_prob[1])))
+
+        return all_scores
 
     def _highest_score(self, prob):
         best = None
