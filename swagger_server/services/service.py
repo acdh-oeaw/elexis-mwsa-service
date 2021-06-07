@@ -2,7 +2,6 @@ import logging
 import pickle
 import tensorflow as tf
 import pandas as pd
-import yaml
 from pyaml_env import parse_config
 from transformers import TFBertForSequenceClassification, BertTokenizerFast, PretrainedConfig
 
