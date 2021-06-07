@@ -7,16 +7,16 @@ stages:
   - build
   - test
   - deploy  # dummy stage to follow the template guidelines
-  #- review
-  #- dast
-  #- staging
-  #- canary
+  - review
+  - dast
+  - staging
+  - canary
   - production
-  #- incremental rollout 10%
-  #- incremental rollout 25%
-  #- incremental rollout 50%
-  #- incremental rollout 100%
-  #- performance
+  - incremental rollout 10%
+  - incremental rollout 25%
+  - incremental rollout 50%
+  - incremental rollout 100%
+  - performance
   - cleanup
 
 
@@ -86,4 +86,3 @@ build:
     - docker -l debug build -t $CI_REGISTRY_IMAGE/init:latest -f Dockerfile.init .
     - docker -l debug push $CI_APPLICATION_REPOSITORY:$CI_APPLICATION_TAG
     - docker -l debug push $CI_REGISTRY_IMAGE/init:latest
-
