@@ -45,13 +45,28 @@ To run the server on a Docker container, please execute the following from the r
 docker build -t swagger_server .
 
 # starting up a container
-docker run -p 8080:8080 swagger_server
+docker run -p 5000:5000 swagger_server
+docker run -p 5000:5000 -v {model_path_host:/mwsa} --env MODEL_PATH=/mwsa {image id} 
 ```
+
 
 #pip install -e git+ssh://gitlab+deploy-token-218175:5yjZ4VbaUkDExr5fag-X@gitlab.com/acdh-oeaw/elexis/mwsa_model.git#egg=mwsa_model
 
 ## Example Query
 ```
+curl --location --request POST 'http://localhost:8080/ACDH/ACDH_MWSA_Service/1o/achda-mwsa/scores/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "classifier": "bert",
+  "pair": {
+    "headword":"olive",
+    "pos":"noun",
+    "lang": "de",
+    "def1": "a type of edible fruit",
+    "def2": "a type of edible fruit which is used as a garnish etc and which gives oil used for cooking"
+  }
+}'
+
 curl --location --request POST 'https://mwsa-service.acdh-dev.oeaw.ac.at/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
