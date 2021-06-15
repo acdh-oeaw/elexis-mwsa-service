@@ -1,5 +1,7 @@
 import logging
 import pickle
+import time
+
 import tensorflow as tf
 import pandas as pd
 from pyaml_env import parse_config
@@ -9,7 +11,7 @@ from swagger_server.exceptions.exceptions import LanguageNotSupportedException
 from swagger_server.models import Scores, ScoreInput
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 config_file = 'config.yaml'
 #with open(config_file, 'r') as fd:
@@ -41,16 +43,23 @@ class TransformerService(object):
             raise LanguageNotSupportedException(lang)
 
         model: TransformerModel = self.models[lang]
+
+        start = time.time()
         test_encodings = model.tokenizer([input.def1.values[0]], [input.def2.values[0]], truncation=True,
                                               padding='max_length', max_length=128, return_tensors="tf")
+        end = time.time()
         logger.debug(test_encodings)
+        logger.debug("encoding time: " + str(end - start))
 
         tf_dataset: tf.data.Dataset = tf.data.Dataset.from_tensor_slices((
             dict(test_encodings)
         ))
         logger.info('determining mwsa score')
 
+        start = time.time()
         predicted = model.model.predict(tf_dataset.batch(32))
+        end = time.time()
+        logger.debug("prediction time: " + str(end - start))
 
         logger.info('mwsa score calculated {}'.format(predicted))
         logger.debug(list(model.config.id2label.values()))

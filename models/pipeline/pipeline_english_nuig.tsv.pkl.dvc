@@ -3,7 +3,7 @@ frozen: true
 deps:
 - path: mwsa_model/output/pipeline/pipeline_english_nuig.tsv.pkl
   repo:
-    url: git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
+    url: https://github.com/acdh-oeaw/elexis_mwsa_model.git
     rev_lock: c82258a972573ba90cf878f6b4834d67ee9485f3
 outs:
 - md5: 8a7ba3b0faeea1e6de035a04af89bd9e
