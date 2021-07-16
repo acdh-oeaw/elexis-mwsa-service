@@ -29,7 +29,7 @@ def test_scoring(pair):
     result = alignment_service.score(score_input)
     print(result)
     assert result is not None
-    assert len(result) > 0
+    assert len(result) == 5
 
 
 @pytest.mark.parametrize("pair", testdata)
@@ -42,7 +42,7 @@ def test_scoring_with_bert(pair):
     result = alignment_service.score(score_input)
     print(result)
     assert result is not None
-    assert len(result) > 0
+    assert len(result) == 5
 
 
 english_data = pd.DataFrame(

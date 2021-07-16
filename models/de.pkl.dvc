@@ -3,7 +3,7 @@ frozen: true
 deps:
 - path: mwsa_model/output/models/de.pkl
   repo:
-    url: git@gitlab.com:acdh-oeaw/elexis/mwsa_model.git
+    url: https://github.com/acdh-oeaw/elexis_mwsa_model.git
     rev_lock: c82258a972573ba90cf878f6b4834d67ee9485f3
 outs:
 - md5: e5f9169fcc5488ed085608fab1b96676

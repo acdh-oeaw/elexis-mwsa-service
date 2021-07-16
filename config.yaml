@@ -1,0 +1,2 @@
+default:
+  model_path: ${MODEL_PATH}
